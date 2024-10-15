@@ -3,7 +3,7 @@ function getData() {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve([1, 2, 3, 4]);
-    }, 3000);
+    }, 1000);
   });
 }
 
@@ -22,6 +22,3 @@ getData()
       document.getElementById('output').innerText = doubledNumbers.join(', ');
     }, 2000);
   });
-
-
-
