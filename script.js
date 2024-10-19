@@ -13,7 +13,7 @@ function filterEvenNumbers(numbers) {
         setTimeout(() => {
             document.getElementById('output').innerText = evenNumbers.join(', ');
             resolve(evenNumbers);
-        }, 1000); // Update output after 1 second
+        }, 1000); // Display even numbers after 1 second
     });
 }
 
@@ -23,7 +23,7 @@ function multiplyByTwo(numbers) {
         setTimeout(() => {
             document.getElementById('output').innerText = multiplied.join(', ');
             resolve(multiplied);
-        }, 2000); // Update output after 2 seconds
+        }, 2000); // Display multiplied numbers after 2 seconds
     });
 }
 
