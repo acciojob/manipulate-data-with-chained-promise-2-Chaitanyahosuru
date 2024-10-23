@@ -24,14 +24,27 @@ getNumbers()
         // Multiply even numbers by 2
         const multipliedNumbers = evenNumbers.map(num => num * 2);
         
-        // Update the output with multiplied numbers after another 2 seconds
+        // Update the output with multiplied numbers after 1 second (instead of 2)
         return new Promise((resolve) => {
             setTimeout(() => {
                 document.getElementById("output").textContent = `Multiplied Even Numbers: ${multipliedNumbers.join(', ')}`;
                 resolve(multipliedNumbers);
-            }, 2000); // Wait 2 seconds before resolving
+            }, 1000); // Wait 1 second before resolving
         });
     })
     .catch(error => {
         console.error("An error occurred:", error);
     });
+cy.get('#output', { timeout: 10000 }).should('contain', 'Even Numbers: 2, 4');
+describe('Transforming Data with Promise Chaining', () => {
+    it('Check for array', () => {
+        cy.visit('http://localhost:3000'); // Adjust the URL as necessary
+
+        // Wait for the first output after filtering
+        cy.get('#output').should('contain', 'Even Numbers: 2, 4');
+
+        // Wait for the second output after multiplying
+        cy.get('#output').should('contain', 'Multiplied Even Numbers: 4, 8');
+    });
+});
+
