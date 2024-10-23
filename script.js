@@ -1,33 +1,35 @@
 //your JS code here. If required.
-function getArray() {
+function getNumbers() {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve([1, 2, 3, 4]);
-        }, 3000); // Resolves with the array after 3 seconds
+        }, 3000); // Resolves after 3 seconds
     });
 }
 
-function filterEvenNumbers(numbers) {
-    return new Promise((resolve) => {
+getNumbers()
+    .then(numbers => {
+        // Filter out odd numbers
         const evenNumbers = numbers.filter(num => num % 2 === 0);
-        setTimeout(() => {
-            document.getElementById('output').innerText = evenNumbers.join(', ');
-            resolve(evenNumbers);
-        }, 1000); // Display even numbers after 1 second
+        document.getElementById("output").textContent = `Even Numbers: ${evenNumbers.join(', ')}`;
+        
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(evenNumbers);
+            }, 1000); // Wait 1 second before resolving
+        });
+    })
+    .then(evenNumbers => {
+        // Multiply even numbers by 2
+        const multipliedNumbers = evenNumbers.map(num => num * 2);
+        document.getElementById("output").textContent = `Multiplied Even Numbers: ${multipliedNumbers.join(', ')}`;
+        
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(multipliedNumbers);
+            }, 2000); // Wait 2 seconds before resolving
+        });
+    })
+    .catch(error => {
+        console.error("An error occurred:", error);
     });
-}
-
-function multiplyByTwo(numbers) {
-    return new Promise((resolve) => {
-        const multiplied = numbers.map(num => num * 2);
-        setTimeout(() => {
-            document.getElementById('output').innerText = multiplied.join(', ');
-            resolve(multiplied);
-        }, 2000); // Display multiplied numbers after 2 seconds
-    });
-}
-
-// Start the promise chain
-getArray()
-    .then(filterEvenNumbers)
-    .then(multiplyByTwo);
