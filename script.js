@@ -11,10 +11,11 @@ getNumbers()
     .then(numbers => {
         // Filter out odd numbers
         const evenNumbers = numbers.filter(num => num % 2 === 0);
-        document.getElementById("output").textContent = `Even Numbers: ${evenNumbers.join(', ')}`;
         
+        // Update the output with even numbers after 1 second
         return new Promise((resolve) => {
             setTimeout(() => {
+                document.getElementById("output").textContent = `Even Numbers: ${evenNumbers.join(', ')}`;
                 resolve(evenNumbers);
             }, 1000); // Wait 1 second before resolving
         });
@@ -22,10 +23,11 @@ getNumbers()
     .then(evenNumbers => {
         // Multiply even numbers by 2
         const multipliedNumbers = evenNumbers.map(num => num * 2);
-        document.getElementById("output").textContent = `Multiplied Even Numbers: ${multipliedNumbers.join(', ')}`;
         
+        // Update the output with multiplied numbers after another 2 seconds
         return new Promise((resolve) => {
             setTimeout(() => {
+                document.getElementById("output").textContent = `Multiplied Even Numbers: ${multipliedNumbers.join(', ')}`;
                 resolve(multipliedNumbers);
             }, 2000); // Wait 2 seconds before resolving
         });
