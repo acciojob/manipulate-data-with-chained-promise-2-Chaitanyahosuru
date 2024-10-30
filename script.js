@@ -12,10 +12,8 @@ getNumbers()
   .then((numbers) => {
     // Filter out odd numbers
     const evenNumbers = numbers.filter((num) => num % 2 === 0);
-    // Update output after 1 second
-    setTimeout(() => {
-      document.getElementById('output').innerText = `Even numbers: ${evenNumbers.join(', ')}`;
-    }, 1000);
+    // Update output immediately
+    document.getElementById('output').innerText = `Even numbers: ${evenNumbers.join(', ')}`;
     // Return even numbers for next promise
     return evenNumbers;
   })
@@ -28,4 +26,7 @@ getNumbers()
     }, 2000);
   })
   .catch((error) => console.error(error));
+
+// Initialize output immediately
+document.getElementById('output').innerText = 'Loading...';
 
